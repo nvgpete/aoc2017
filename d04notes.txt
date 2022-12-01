@@ -1,0 +1,9 @@
+Check that pass phrases follow certain odd rules.
+
+Very often I suspect if I was better with grep I could solve these as a
+one-liner. Sometimes I even make a few tries before giving up in abject
+failure. This time, however, the following worked.
+
+grep -vc "\(\<[a-z]*\>\).*\1" d04.txt
+
+(Probably a one of a kind miracle...)

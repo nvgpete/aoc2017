@@ -1,0 +1,22 @@
+Permutations of 16 dancing programs.
+
+Part A is straightforward.
+
+Repeating part A a billion times is likely to be time consuming; I calculated
+it would take about a week to brute force it, though I always check how long
+brute force algorithms take, as sometimes they take less than one might
+expect, maybe less than figuring out something more elegant.
+
+Anyway, perhaps I can use some group theory since the intermediate results are
+members of the 16 dimensional symmetric group S16. Going through the dance
+operations produces a permutation of the original ordering. Repeated
+traversals of the list results in successive applications of that
+permutation operator, creating a cyclic subgroup. It is easy to show the
+largest cyclic subgroup of S16 is 140 elements corresponding to rotations
+among groups of 4, 5 and 7 elements. Thus we know that we will get back to
+the ordering "abcdefghijklmnop" in no more than 140 steps. The rest is easy;
+store away the intermediate results until we get a repeat, calculate 1 billion
+mod the cycle length, and use that value to index into our list of intemediate
+results.  
+
+I always suspected group theory was useful for something.

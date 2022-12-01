@@ -1,0 +1,15 @@
+Accessing and testing spiral memory
+
+There is no d03.txt data file as the input is '277678' which is embedded in
+a #define statement in the program.
+
+I did part A by noting that as you move down and right from the origin the
+values are perfect squares of odd numbers whose distance from the center is
+just the odd number minus 1. The closest odd square to my input was 527^2 =
+277729 at a distance of 526. Subtracting I get that I have to move left 51
+squares, which moves me 51 squares closer to the origin. Thus the answer is
+526-51=475.  
+
+Since the second part required that I write a program to generate the spiral
+locations in order, I also wrote it for the first part so there is both a
+d03a.c and d03b.c.

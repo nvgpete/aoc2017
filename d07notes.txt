@@ -1,0 +1,8 @@
+Balancing a tower of programs
+
+I didn't fully solve the problem in code as it was somewhat messy to figure
+out which program weight was off, especially if it had been in a node with
+two branches. (Which my problem set did not do.) It was relatively simple to
+print out the weights of the first (and subsequent, in case of 2 branch
+nodes) misweighted node and figure out what it should have been. Much easier
+than writing code to do it.

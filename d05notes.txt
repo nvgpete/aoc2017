@@ -1,0 +1,8 @@
+Trampolining through many unusual jump instructions.
+
+Fairly easy. There are two programs since the self-modifying nature of the
+jump instructions make it inconvenient to do in one program. Try 
+
+diff d05a.c d05b.c
+
+to see just how similar the two parts are.

@@ -1,0 +1,33 @@
+Moving and finding distances on a hexagonal grid.
+
+I created an equivalent cartesian grid by pairing adjacent rows of hex tiles
+into a single row. This leads to n/s simply incrementing/decrementing the row
+value. The others change the column value by +-1, but only change the row
+value for every other occurence. For example, ne increments the column
+value, and increments the row value if the original column was even.
+
+The distance metric for this arrangement is something like:
+d=abs(c) if abs(c)>abs(r/2)
+d=abs(c/2)+abs(r) otherwise
+(row,column->r,c)
+(there may be some +-1 involved here depending on the signs of r & c)
+Programming the above is straightforward.
+
+Notice that since all movements are commutative we could just count up the
+various directions. Using 6 commands like
+tr , \\n <d11.txt | grep -c se
+we get  
+n 1405
+s 1119
+ne 1713
+sw 1357
+nw 1289
+se 1260
+which after subtracting opposites gives
+n 366
+ne 356
+nw 29
+Note that sw+nw=n so we can further simplify to
+n 395
+ne 327
+Finally, add these to get part a answer of 722.

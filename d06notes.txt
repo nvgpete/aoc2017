@@ -1,0 +1,41 @@
+Finding repeating cycles in memory bank reallocations
+
+Sometimes the easiest path to the solution does not require finishing the
+program. This problem could be split into 3 parts:
+1, Read the input data
+2. Make a loop to reallocate according to the rules
+3. Look for repeated states.
+
+The first two are quite easy, but storing a potentially large number of
+states to look for repeats seemed like a lot more coding, even though I knew
+what I had to do.
+
+Usually I remove debugging printf() statements, but here I have left them
+in, as they were used in the solution.
+
+First, I printed a line with the contents of each of the memory bank to
+see if I was doing it right, and if there was anything to be learned from
+that data. I did notice that there were never more than 15 blocks per bank
+so I could pack the 16 banks into an 8 byte long integer. There is a rather
+ugly commented out statement that does just that, but it turned out to be
+unnecessary. I only left it in so I could admire its non-transparency.
+
+About this time I decided I didn't want to store all those states since I
+could use pipes to linux commands to analyze the data more simply than writing
+more code. So I ran something like
+./d06a | sort -u | wc -l
+and made the number of iterations larger until this produced a constant,
+since once the states start repeating, there will never be any new ones. The
+value I got was 5041 so the first repeated state must have been 5042, the
+answer to part A.
+
+Part B asked for the length of the repeating cycle. I changed the iteration
+count to 5042 since that would get me to the first repeat and the ran the
+program and looked at the last value. A simple copy/paste allowed me to
+rerun as
+./d06a | grep -n "pasted state 5042"
+which gave
+3946 <state 5042>
+5042 <state 5042>
+so the cycle length is just 5042-3956=1086.
+  

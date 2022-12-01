@@ -1,0 +1,4 @@
+Double random number generators
+
+There exists a d15.txt data file, but it was easier to use #defines to
+input the two numbers than read the data file. The value were 116 and 299.
