@@ -37,28 +37,28 @@ straightforward enough to not require any comments.
 
 ## Synopsis of each days problem
 
-1 - Prove you are a bot by solving numeric captcha.
-2 - Calculate spreadsheet checksum.
-3 - Accessing spiral memory slowly.
-4 - Check pass phrases for validity.
-5 - Trampolining through a large region of self-modifying jump intructions.
-6 - Finding repetitions in memory bank reallocations.
-7 - Balance a tower of programs.
-8 - Find largest values in registers after many odd operations.
-9 - Removing garbage from a stream.
-10 - Hash based on knot-tying.
-11 - Moving on a hexagonal grid.
-12 - Finding groups of interconnected programs.
-13 - Traversing a firewall.
-14 - More knot hashes and defragmenting a disk.
-15 - Rndom number generators.
-16 - Dancing program permutations.
-17 - Out of control spinlock.
-18 - Musical (?) assembly code.
-19 - Routing alost network packet.
-20 - GPU overloaded by too many particles.
-21 - Generating 2D fractal art.
-22 - Sneaky virus infecting CPU's.
-23 - Fixing experimental coprocessor.
-24 - Building a strong bridge from odd components.
-25 - A broken Turing machine.
+1. - Prove you are a bot by solving numeric captcha.
+2. - Calculate spreadsheet checksum.
+3. - Accessing spiral memory slowly.
+4. - Check pass phrases for validity.
+5. - Trampolining through a large region of self-modifying jump intructions.
+6. - Finding repetitions in memory bank reallocations.
+7. - Balance a tower of programs.
+8. - Find largest values in registers after many odd operations.
+9. - Removing garbage from a stream.
+10. - Hash based on knot-tying.
+11. - Moving on a hexagonal grid.
+12. - Finding groups of interconnected programs.
+13. - Traversing a firewall.
+14. - More knot hashes and defragmenting a disk.
+15. - Rndom number generators.
+16. - Dancing program permutations.
+17. - Out of control spinlock.
+18. - Musical (?) assembly code.
+19. - Routing alost network packet.
+20. - GPU overloaded by too many particles.
+21. - Generating 2D fractal art.
+22. - Sneaky virus infecting CPU's.
+23. - Fixing experimental coprocessor.
+24. - Building a strong bridge from odd components.
+25. - A broken Turing machine.
