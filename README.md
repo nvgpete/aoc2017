@@ -19,7 +19,8 @@ compilation notes.
 Sometimes the problem data set files (eg. d03.txt) do not exist because the
 problem data was simple enough to be provided on the web page. Other times
 it is there, but I have not attempted to read it. In either case the notes
-file will give the input and my reasoning.
+file will give the input and my reasoning. There may also be a file like
+d21x.txt which is example data which may be used for debugging.
 
 Sometimes there may also be a php version of the program for reasons
 described in the notes.

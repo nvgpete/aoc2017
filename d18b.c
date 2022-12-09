@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define FLEN 1200
+#define FLEN 200
 int main(int argc,char **argv) {
   FILE *f;
-  char s[100],*s2,opc[50],r1[50],r2[50];
+  char s[100],*s2,opc[50];
+  int r1[50],r2[50];
   int pc,pc2,lastop=0,last=0,next=0,last2=0,next2=0,ok=1,ok2=1,count=0;
   long rg[26],rg2[26]; //a-z
   long val[50],fifo[FLEN],fifo2[FLEN];
@@ -29,7 +30,7 @@ int main(int argc,char **argv) {
     else if (strncmp(s,"snd",3)==0) opc[lastop]='t';
     else if (strncmp(s,"rcv",3)==0) opc[lastop]='r';
     else if (strncmp(s,"jgz",3)==0) {
-      if(r1[lastop]=='1') opc[lastop]='u';
+      if(s[4]=='1') opc[lastop]='u'; //unconditional jump
       else opc[lastop]='j';
     }
     lastop++;  
@@ -42,7 +43,6 @@ int main(int argc,char **argv) {
   while (ok || ok2) {
     ok=1;
     while (ok && pc>=0 && pc<lastop) {
-//      printf("pc=%d next=%d last=%d next2=%d last2=%d\n",pc,next,last,next2,last2);
       switch (opc[pc]) {
         case 's': rg[r1[pc]]=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
                   break;
@@ -52,12 +52,7 @@ int main(int argc,char **argv) {
                   break;
         case 'a': rg[r1[pc]]+=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
                   break;
-        case 't': //if (last==FLEN && next>0) {
-//                    memmove(fifo,fifo+next,(last-next)*sizeof(fifo[0]));
-//                    last-=next;
-//                    next=0; 
-//                  }
-                  if (last==FLEN) ok=0;
+        case 't': if (last==FLEN) ok=0;
                   else fifo[last++]=rg[r1[pc]];
                   break;
         case 'r': if (last2>next2) rg[r1[pc]]=fifo2[next2++];
@@ -73,7 +68,6 @@ int main(int argc,char **argv) {
     }
     ok2=1;
     while (ok2 && pc2>=0 && pc2<lastop) {
-//      printf("pc2=%d next=%d last=%d next2=%d last2=%d\n",pc2,next,last,next2,last2);
       switch (opc[pc2]) {
         case 's': rg2[r1[pc2]]=r2[pc2]>=0 ? rg2[r2[pc2]] : val[pc2];
                   break;
@@ -83,12 +77,7 @@ int main(int argc,char **argv) {
                   break;
         case 'a': rg2[r1[pc2]]+=r2[pc2]>=0 ? rg2[r2[pc2]] : val[pc2];
                   break;
-        case 't': //if (last2==FLEN && next2>0) {
-//                    memmove(fifo2,fifo2+next2,(last2-next2)*sizeof(fifo2[0]));
-//                    last2-=next2;
-//                    next2=0; 
-//                  }
-                  if (last2==FLEN) ok2=0;
+        case 't': if (last2==FLEN) ok2=0;
                   else {
                     fifo2[last2++]=rg2[r1[pc2]];
                     count++;
@@ -107,7 +96,5 @@ int main(int argc,char **argv) {
       if (ok2) pc2++;
     }
   }
-//  printf("pc=%d op=%c pc2=%d op2=%c\n",pc,opc[pc],pc2,opc[pc2]);
-//  printf("next=%d last=%d next2=%d last2=%d\n",next,last,next2,last2);
   printf("%d messages sent\n",count);  
 }

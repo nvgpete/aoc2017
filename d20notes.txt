@@ -1,0 +1,15 @@
+GPU overloaded by too many particles
+
+Part a was doable by inspection with a little physics. Using 
+grep -n 0,0,1 d20.txt
+grep -n 0,0,-1 d20.txt
+and a few others I determined the smallest Manhattan accelerations were
+particle 21 and 457. All other particles had larger accelerations and would
+get away faster. Particle 457 had a smaller initial velocity so I chose it,
+figuring even if I guessed wrong I could wait a minute and gues particle 21.
+
+I did write a program for the second part, arbitrarily stepping 1000 times,
+and hoping that was enough. After 39 steps there were no more collisions.
+I did a similar thing to do part A programatically, and it settled on
+particle 457 after about 300 iterations.
+ 

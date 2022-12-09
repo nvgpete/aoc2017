@@ -1,0 +1,30 @@
+Fixing experimental coprocessor
+
+The first part is straightforward.
+
+The second part required trying to figure out what the assembly code
+actually did since running it to completion was much too time-consuming.
+There were three nested loops where the two innermost ones didn't seem
+to do much. I tried short-circuiting those loops which allowed the
+program to complete, but gave an incorrect answer. See the commented code at
+the end of d23b.c for an example of the short-circuiting.
+
+In the outermost loop I found that register h was incremented based on the
+value of register f. (I've commented the code in d23.txt to get a general
+idea of what was going on, and where loops begin and end.) Register f is set
+to 1 and the set back to 0 if a (to me) somewhat obscure condition holds. I
+added code to dump the variables after the instruction which sets f back to
+0, and that is the final version of the d23b code. Running it, we see that
+it is factorizing the value in register b, so that f will remain 1 only if
+the value in b is a prime. 
+
+The only remaining thing is to figure out what values b can take. For my
+data, b starts at 107900 and runs to 124900 inclusive, incrementing by 17. 
+The value in h will be the number of non-prime values that b can take. I
+could write a program to figure that out, but it seems that bash is the
+better choice. Thus
+
+for (( x=107900 ; x<=124900 ; x+=17 )) ; do echo -n "$x " ; done | factor | grep -c "[0-9] "
+
+will give the answer needed.
+  

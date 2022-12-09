@@ -5,17 +5,17 @@ int main(int argc,char **argv) {
   FILE *f;
   char s[100],*s2,opc[50];
   int r1[50],r2[50];
-  int pc,last=0;
-  long rg[26]; //a-z
-  long val[50],tone=0;
+  int pc,last=0,count=0;
+  long rg[8]; //a-h
+  long val[50];
   memset(rg,0,sizeof(rg));
-  f=fopen("d18.txt","r");
+  f=fopen("d23.txt","r");
   fgets(s,sizeof(s),f);
   while (!feof(f)) {
     if((s2=strchr(s,'\n')))*s2=0;
     r1[last]=s[4]-'a';
     if (s[5]) {
-      if(s[6]>='a' && s[6]<='z') r2[last]=s[6]-'a';
+      if(s[6]>='a' && s[6]<='h') r2[last]=s[6]-'a';
       else {
         r2[last]=-1;
         val[last]=atoi(s+6);
@@ -23,11 +23,8 @@ int main(int argc,char **argv) {
     }    
     if (strncmp(s,"set",3)==0) opc[last]='s';
     else if (strncmp(s,"mul",3)==0) opc[last]='m'; 
-    else if (strncmp(s,"mod",3)==0) opc[last]='d';
-    else if (strncmp(s,"add",3)==0) opc[last]='a';
-    else if (strncmp(s,"snd",3)==0) opc[last]='t';
-    else if (strncmp(s,"rcv",3)==0) opc[last]='r';
-    else if (strncmp(s,"jgz",3)==0) {
+    else if (strncmp(s,"sub",3)==0) opc[last]='b';
+    else if (strncmp(s,"jnz",3)==0) {
       if(s[4]=='1') opc[last]='u'; //unconditional jump
       else opc[last]='j';
     }
@@ -41,22 +38,14 @@ int main(int argc,char **argv) {
       case 's': rg[r1[pc]]=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
                 break;
       case 'm': rg[r1[pc]]*=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
+                count++;
                 break;
-      case 'd': rg[r1[pc]]%=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
+      case 'b': rg[r1[pc]]-=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
                 break;
-      case 'a': rg[r1[pc]]+=r2[pc]>=0 ? rg[r2[pc]] : val[pc];
-                break;
-      case 't': tone=rg[r1[pc]];
-                break;
-      case 'r': if (rg[r1[pc]]) {
-                  rg[r1[pc]]=tone;
-                  printf("First recovered sound=%ld\n",tone);
-                  exit(0);
-                }  
-                break;
-      case 'j': if (rg[r1[pc]]<=0) break;
+      case 'j': if (rg[r1[pc]]==0) break;
       case 'u': pc+=(r2[pc]>=0 ? rg[r2[pc]] : val[pc])-1;
     }
     pc++;
   }
+  printf("%d multiplies\n",count);
 }

@@ -1,32 +1,32 @@
-set b 79
-set c b
-jnz a 2
-jnz 1 5
-mul b 100
-sub b -100000
-set c b
-sub c -17000
-set f 1
-set d 2
-set e 2
-set g d
-mul g e
-sub g b
-jnz g 2
-set f 0
-sub e -1
-set g e
-sub g b
-jnz g -8
-sub d -1
-set g d
-sub g b
-jnz g -13
-jnz f 2
-sub h -1
-set g b
-sub g c
-jnz g 2
-jnz 1 3
-sub b -17
-jnz 1 -23
+set b 79   0 b=79
+set c b    1 c=79
+jnz a 2    2 a!=0 4
+jnz 1 5    3 jmp  8
+mul b 100  4 b=7900 
+sub b -100000 5 b=107900
+set c b    6 c=107900
+sub c -17000 7 c=124900
+set f 1    8 f=1 
+set d 2    9 d=2
+set e 2   10 e=2
+set g d   11 g=2
+mul g e   12 g=4
+sub g b   13 g=-107896
+jnz g 2   14 g!=0 16
+set f 0   15 f=0
+sub e -1  16 e=3
+set g e   17 g=3
+sub g b   18 g=-107897
+jnz g -8  19 g!=0 11
+sub d -1  20 d++
+set g d   21 d->g
+sub g b   22 g-107900
+jnz g -13 23 g!=0 10
+jnz f 2   24 f!=0 26
+sub h -1  25 h++
+set g b   26 b->g
+sub g c   27 g-c
+jnz g 2   28 g!=0 30
+jnz 1 3   29 end
+sub b -17 30 b-17
+jnz 1 -23 31 jmp 8

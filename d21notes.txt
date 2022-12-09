@@ -1,0 +1,28 @@
+Generating 2D fractal art.
+
+The general idea is to represent the 2x2, 3x3 and 4x4 subimages as integers
+with 1 bits for '#'. Then we can make a couple of lookup tables, one going
+from 2x2 -> 3x3 and the other from 3x3 -> 4x4 by reading theinput data. Thus
+we have
+int xlat23[16]; // range 0..511 (9 bits)
+int xlat34[512]; // range 0..65535 (16 bits)
+Each line in the input date for 2x2 -> 3x3 corresponds to as many as 4 table
+entries once I account for rotations. Similarly in the 3x3 -> 4x4 case there
+may 8 be entries, 4 rotations times 2 flips.
+
+When I got all this coded, I realized I had done bits like
+
+3 2  and 8 7 6 and 15 14 13 12 
+1 0      5 4 3     11 10  9  8
+         2 1 0      7  6  5  4
+                    3  2  1  0
+
+for reading the input data and in the opposite order in reading the data
+from the image array. Fortunately this has no effect on the indexes since the
+two representations are rotations/flips of each other. However, thevalues in
+the arrays need to be read out backwards; there are two statements with
+comments where I made that adjustment.
+
+The second part was just more iterations. I was concerned that it might be
+that I needed to rotate the output data along with the indexes which would
+have forced me to number pixels in a more consistent manner.    
