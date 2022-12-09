@@ -1,9 +1,6 @@
 #### These are solutions written in c for the Advent of Code - 2017. 
 See https://adventofcode.com/2017
 
-### Note: This year is not complete; several problems are missing.
-### Additionally, d18b.c is currently broken.
-
 Each problem generally has two parts. Examples of filenames for day 5 are:
 - d05a.c - solution for first part
 - d05b.c - solution for second part
